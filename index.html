@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Library</title>
+</head>
+<body>
+    <div class="container">
+        <div class="top-container">
+            <header><h1>Library</h1></header>
+            <button class="open-modal">+ Add Book</button>
+        </div>
+
+        <div class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Add a Book</h4>
+                    <div class="close-modal">X</div>
+                </div>
+                <form>
+                    <ul>
+                        <li>
+                            <label for="book_title">Title</label>
+                            <input type="text" name="book_title" id="book_title">
+                        </li>
+                        <li>
+                            <label for="book_author">Author</label>
+                            <input type="text" name="book_author" id="book_author">
+                        </li>
+                        <li>
+                            <label for="book_pages">Pages</label>
+                            <input type="number" min=1 name="book_pages" id="book_pages">
+                        </li>
+                        <li>
+                            <label for="reading_status">Reading Status</label>
+                            <input list="status" id="reading_status" name="reading_status">
+                            <datalist id="status">
+                                <option value="Completed"></option>
+                                <option value="In Progress"></option>
+                                <option value="To Be Read"></option>
+                                <option value="Did Not Finish"></option>
+                            </datalist>
+                        </li>
+                    </ul>
+                    <button type="submit" id="add-book">Add to List</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="bottom-container">
+            <div class="books">
+                <div class="book1"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
