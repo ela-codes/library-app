@@ -17,10 +17,10 @@
         <div class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4>Add a Book</h4>
+                    <h3>Add a Book</h3>
                     <div class="close-modal">X</div>
                 </div>
-                <form>
+                <form autocomplete="off">
                     <ul>
                         <li>
                             <label for="book_title">Title</label>
@@ -35,24 +35,29 @@
                             <input type="number" min=1 name="book_pages" id="book_pages">
                         </li>
                         <li>
-                            <label for="reading_status">Reading Status</label>
-                            <input list="status" id="reading_status" name="reading_status">
-                            <datalist id="status">
-                                <option value="Completed"></option>
-                                <option value="In Progress"></option>
-                                <option value="To Be Read"></option>
-                                <option value="Did Not Finish"></option>
-                            </datalist>
+                            <h5>Reading Status</h5>
+                            <input type="radio" id="completed" name="reading_status" value="Completed">
+                            <label for="completed">Completed</label><br>
+                            <input type="radio" id="in-progress" name="reading_status" value="In Progress">
+                            <label for="in-progress">In Progress</label><br>
+                            <input type="radio" id="want-to-read" name="reading_status" value="Want To Read">
+                            <label for="want-to-read">Want To Read</label><br>
+                            <input type="radio" id="did-not-finish" name="reading_status" value="Did Not Finish">
+                            <label for="did-not-finish">Did Not Finish</label><br>
                         </li>
                     </ul>
                     <button type="submit" id="add-book">Add to List</button>
                 </form>
+                <div class="book-id-msg">
+                    <span  class="book-id"></span>.
+                </div>
+                <br>
             </div>
         </div>
 
         <div class="bottom-container">
             <div class="books">
-                <div class="book1"></div>
+                <div class="book-card"></div>
             </div>
         </div>
     </div>
