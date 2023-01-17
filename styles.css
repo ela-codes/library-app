@@ -88,7 +88,9 @@ h3 {
 .open-modal:hover,
 .open-modal:focus,
 #add-book:hover,
-#add-book:focus {
+#add-book:focus 
+img:hover,
+img:hover {
     color: #000;
     text-decoration: none;
     cursor: pointer;
@@ -147,3 +149,8 @@ button#add-book {
     place-items: center;
 }
 
+
+img {
+    padding-right: 10px;
+    height: 20px;
+}
