@@ -1,10 +1,9 @@
 :root {
-    --darkgray: #393939;
-    --lightbrown: #ccb492;
-    --mutedred: #c29a91;
-    --lightgray: #e9e8e4;
-    --text-color: rgb(32, 32, 32);
-    --off-white: #f3f3f3;
+    --darkgray: #2d333b;
+    --lightgray: #747474;
+    --off-white: #cdd9e5;
+    --night: #22272e;
+
   }
 
 
@@ -14,50 +13,70 @@ body, h1, h2, h3, h4, h5, ul {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--off-white);
+    background-color: var(--night);
+    color: var(--off-white);
+    font-size: 0.8rem;
 }
 
 .container {
-    border: 1px solid gray;
+    border: 1px solid var(--lightgray);
     height: 80%;
-    width: 80%;
+    width: 90%;
     padding: 20px;
+}
+
+header {
+    background-color: var(--darkgray);
 }
 
 h1 {
     font-size: 50px;
-    font-weight: 400;
+    padding: 10px;
+    font-weight: 700;
+}
+
+.open-modal,
+#add-book,
+#update-status {
+    padding: 5px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid var(--lightgray);
+    color: var(--off-white);
+    margin: 10px 0px 0px 5px;
+    background-color: var(--darkgray);
 }
 
 .modal,
 .edit-modal {
     display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
+    position: fixed;
     z-index: 1; /* Sit on top */
-    padding-top: 300px;
+    padding-top: 15vh;
     left: 0;
     top: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.6);
   }
   
   /* Modal Content */
 .modal-content, 
 .edit-modal-content {
-    background-color: #fefefe;
+    background-color: var(--night);
     font-size: 16px;
     margin: auto;
     padding: 25px;
-    border: 1px solid #888;
+    border: 1px solid var(--lightgray);
     border-radius: 5px;
-    width: 400px;
+    width: clamp(310px, 30%, 360px);
 
     display: grid;
     grid-template-rows: 10% 90%;
@@ -82,7 +101,7 @@ h3 {
     font-weight: bold;
     grid-column: 3 / 4;
     justify-self: right;
-    margin-right: 5px;
+    margin-right: 12px;
 }
   
 .close-modal:hover,
@@ -93,7 +112,7 @@ h3 {
 #add-book:focus 
 img:hover,
 img:hover {
-    color: #000;
+    color: var(--lightgray);
     text-decoration: none;
     cursor: pointer;
 }
@@ -116,7 +135,6 @@ input:not([type='radio']) {
     display: flex;
 }
 
-
 li {
     list-style: none;
     padding: 10px;
@@ -129,30 +147,48 @@ li {
     justify-self: flex-end;
 }
 
-button#add-book {
+
+#add-book {
     margin-top: 12px;
     width: 150px;
     height: 30px;
 }
 
 .bottom-container {
-    padding-top: 20px;
+    padding-top: 30px;
+}
+
+
+.library-header,
+.library-content div {
+    display: grid;
+    grid-template: repeat(auto-fit, 2rem) / repeat(5, 1fr);
+    place-items: center;
+    border-bottom: 1px solid var(--lightgray);
 }
 
 .library-header {
     font-weight: 600;
     border: 1px solid black;
+    height: 2rem;
+    margin-bottom: 3px;
 }
 
-
-.library-display div {
-    display: grid;
-    grid-template: repeat(auto-fit, 100%) / repeat(5, 1fr);
-    place-items: center;
+.library-content > div  span {
+    display: flex;
+    align-items: center;
 }
 
 
 img {
     padding-right: 10px;
     height: 20px;
+}
+
+a {
+    color: var(--lightgray);
+}
+
+footer {
+    font-size: 15px;
 }

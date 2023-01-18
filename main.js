@@ -15,7 +15,8 @@ const updateStatusBtn = document.querySelector('#update-status');
 const form = document.querySelector('.new-book-form');
 const editStatusForm = document.querySelector('.edit-status-form')
 const bookIdNumber = document.querySelector('.book-id');
-const libraryDisplay = document.querySelector('.library-display');
+const libraryContent = document.querySelector('.library-content');
+const editBookIdText = document.querySelector('.edit-book-id');
 
 let currBookId;
 
@@ -81,21 +82,11 @@ function editBookStatus(bookId) {
 function updateBookStatusText(bookId) {
     const statusText = document.querySelector(`.status-${bookId}`);
     statusText.innerText = myLibrary[bookId].status
-
 }
 
-function addDeleteBtnListener(btn) {
-    btn.addEventListener('click', (e) => {
-        deleteFromLibrary((e.target.className).slice(-1))
-    })
-}
-
-function addEditBtnListener(btn) {
-    btn.addEventListener('click', (e) => {
-        currBookId = e.target.classList[2];
-        setRadioBtnValue(e.target.classList[1]);
-        editModal.style.display = 'block';
-    })
+function updateEditBookIdText(bookId) {
+    const actualId = Number(bookId) + 1
+    editBookIdText.innerText = actualId;
 }
 
 function setBookIdMessage() {
@@ -129,7 +120,7 @@ function createBookCard(bookValues) {
     // create new div element, new span elements, then insert text in those span elements
     const newCard = document.createElement('div');
     newCard.classList.add(`book-${bookNum}`);
-    libraryDisplay.appendChild(newCard);
+    libraryContent.appendChild(newCard);
     
     const bookName = document.createElement('span');
     const bookAuthor = document.createElement('span');
@@ -158,6 +149,22 @@ function setRadioBtnValue(status) {
 }
 
 // EVENT LISTENERS
+
+
+function addDeleteBtnListener(btn) {
+    btn.addEventListener('click', (e) => {
+        deleteFromLibrary((e.target.className).slice(-1))
+    })
+}
+
+function addEditBtnListener(btn) {
+    btn.addEventListener('click', (e) => {
+        currBookId = e.target.classList[2];
+        setRadioBtnValue(e.target.classList[1]);
+        updateEditBookIdText(currBookId)
+        editModal.style.display = 'block';
+    })
+}
 
 openModal.addEventListener('click', () => {
     modal.style.display = 'block';
@@ -214,6 +221,7 @@ editBookBtn.forEach(btn => {
     btn.addEventListener('click', (e) => {
         currBookId = e.target.classList[2];
         setRadioBtnValue(e.target.classList[1]);
+        updateEditBookIdText(currBookId)
         editModal.style.display = 'block';
     })
 })
