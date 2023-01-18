@@ -20,7 +20,7 @@
                     <h3>Add a Book</h3>
                     <div class="close-modal">X</div>
                 </div>
-                <form autocomplete="off">
+                <form autocomplete="off" class="new-book-form">
                     <ul>
                         <li>
                             <label for="book_title">Title</label>
@@ -55,6 +55,30 @@
             </div>
         </div>
 
+        <div class="edit-modal">
+            <div class="edit-modal-content">
+                <div class="modal-header">
+                    <h3>Edit Book <span clas="edit-book-id"></span></h3>
+                    <div class="close-modal">X</div>
+                </div>
+                <form autocomplete="off" class="edit-status-form">
+                    <ul>
+                        <li>
+                            <h5>Reading Status</h5>
+                            <input type="radio" id="completed" name="reading_status" value="Completed">
+                            <label for="completed">Completed</label><br>
+                            <input type="radio" id="in-progress" name="reading_status" value="In Progress">
+                            <label for="in-progress">In Progress</label><br>
+                            <input type="radio" id="want-to-read" name="reading_status" value="Want To Read">
+                            <label for="want-to-read">Want To Read</label><br>
+                            <input type="radio" id="did-not-finish" name="reading_status" value="Did Not Finish">
+                            <label for="did-not-finish">Did Not Finish</label><br>
+                        </li>
+                    </ul>
+                <button type="submit" id="update-status">Update Status</button>
+            </div>
+        </div>
+        
         <div class="bottom-container">
             <div class="library-display">
                 <div class="library-header">
@@ -65,18 +89,18 @@
                     <span></span>
                 </div>
                 <div class="book-0">
-                    <span class="name">Psychology of Money</span>
-                    <span class="author">Morgan Housel</span>
-                    <span class="pages">256</span>
-                    <span class="status">Want To Read</span>
-                    <span><img src="edit.svg" class="edit 0"><img src="delete.svg" class="delete 0"></span>
+                    <span class="name-0">Psychology of Money</span>
+                    <span class="author-0">Morgan Housel</span>
+                    <span class="pages-0">256</span>
+                    <span class="status-0">Want To Read</span>
+                    <span><img src="edit.svg" class="edit want-to-read 0" ><img src="delete.svg" class="delete 0"></span>
                 </div>
                 <div class="book-1">
-                    <span class="name">The Alchemist</span>
-                    <span class="author">Paulo Coelho</span>
-                    <span class="pages">175</span>
-                    <span class="status">Completed</span>
-                    <span><img src="edit.svg" class="edit 1"><img src="delete.svg" class="delete 1"></span>
+                    <span class="name-1">The Alchemist</span>
+                    <span class="author-1">Paulo Coelho</span>
+                    <span class="pages-1">175</span>
+                    <span class="status-1">Completed</span>
+                    <span><img src="edit.svg" class="edit completed 1"><img src="delete.svg" class="delete 1"></span>
                 </div>
             </div>
         </div>

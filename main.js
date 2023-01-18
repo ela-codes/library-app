@@ -8,12 +8,23 @@ let bookNum = 0; // Book number is displayed as 1, 2.. Book objects & its relate
 
 const modal = document.querySelector('.modal')
 const openModal = document.querySelector('.open-modal');
-const closeModal = document.querySelector('.close-modal');
+const closeModal = document.querySelectorAll('.close-modal');
 const addButton = document.querySelector('#add-book');
-const form = document.querySelector('form');
+const editModal = document.querySelector('.edit-modal');
+const updateStatusBtn = document.querySelector('#update-status');
+const form = document.querySelector('.new-book-form');
+const editStatusForm = document.querySelector('.edit-status-form')
 const bookIdNumber = document.querySelector('.book-id');
 const libraryDisplay = document.querySelector('.library-display');
 
+let currBookId;
+
+const statusType = {
+    'Completed': 'completed',
+    'In Progress': 'in-progress',
+    'Want To Read': 'want-to-read',
+    'Did Not Finish': 'did-not-finish'
+}
 
 
 // FUNCTIONS
@@ -52,11 +63,38 @@ function deleteFromLibrary(bookId) {
     }
 }
 
+function editBookStatus(bookId) {
+    const newStatus = editStatusForm.elements.reading_status.value;
+
+    console.log(`Before: ${myLibrary[bookId].status}`)
+
+    if (newStatus !== bookId.status) {
+        myLibrary[bookId].status = newStatus
+    }
+
+    console.log(`After: ${myLibrary[bookId].status}`)
+}
+
 
 // Functions related to display
+
+function updateBookStatusText(bookId) {
+    const statusText = document.querySelector(`.status-${bookId}`);
+    statusText.innerText = myLibrary[bookId].status
+
+}
+
 function addDeleteBtnListener(btn) {
     btn.addEventListener('click', (e) => {
         deleteFromLibrary((e.target.className).slice(-1))
+    })
+}
+
+function addEditBtnListener(btn) {
+    btn.addEventListener('click', (e) => {
+        currBookId = e.target.classList[2];
+        setRadioBtnValue(e.target.classList[1]);
+        editModal.style.display = 'block';
     })
 }
 
@@ -66,14 +104,16 @@ function setBookIdMessage() {
 
 function hideModal() {
     modal.style.display = 'none';
+    editModal.style.display = 'none';
 }
 
-function addButtons(newCard) {
+function addButtons(newCard, status) {
     const btnArea = document.createElement('span'); 
 
     const editBtn = document.createElement('img');
     editBtn.src = "edit.svg";
-    editBtn.classList.add('edit', `${bookNum}`);
+    editBtn.classList.add('edit', `${status}`, `${bookNum}`);
+    addEditBtnListener(editBtn)
     btnArea.appendChild(editBtn);
 
     const deleteBtn = document.createElement('img');
@@ -101,15 +141,20 @@ function createBookCard(bookValues) {
 
     for (let j = 0; j < 4; j++) {
         element[j].innerText = bookValues[j];
-        element[j].classList.add(attribute[j]);
+        element[j].classList.add(`${attribute[j]}-${bookNum}`);
         newCard.appendChild(element[j]) 
     }
-    addButtons(newCard);
+    addButtons(newCard, statusType[bookValues[3]]); // for example, 'In Progress' equals to 'in-progress'
 }
 
 function deleteBookCard(bookId) {
     const bookDiv = document.querySelector(`div.book-${bookId}`)
     bookDiv.remove()
+}
+
+function setRadioBtnValue(status) {
+    const currStatus = editStatusForm.querySelector(`#${status}`);
+    currStatus.setAttribute("checked", "checked");
 }
 
 // EVENT LISTENERS
@@ -119,16 +164,27 @@ openModal.addEventListener('click', () => {
     setBookIdMessage()}
 )
 
-closeModal.addEventListener('click', () => {hideModal()})
-
+closeModal.forEach(btn => {
+    btn.addEventListener('click', () => {
+        hideModal()
+        })
+    }    
+)
 
 addButton.onclick = (e) => {
     e.preventDefault()
     addBookToLibrary(createNewBook())
-    createBookCard(Object.values(myLibrary[myLibrary.length-1]))
+    createBookCard(Object.values(myLibrary[myLibrary.length-1])) // get the values of recently added Book object
     hideModal()
     form.reset()
     bookNum++ // increment book id number
+}
+
+updateStatusBtn.onclick = (e) => {
+    e.preventDefault()
+    editBookStatus(currBookId)
+    updateBookStatusText(currBookId)
+    hideModal()
 }
 
 
@@ -143,7 +199,7 @@ myLibrary.push(new Book(myBook2[0], myBook2[1], myBook2[2], myBook2[3]))
 bookNum++
 console.log(myLibrary)
 
-// event listener for sample books. temporary.
+// event listener for sample books
 
 const editBookBtn = document.querySelectorAll('.edit');
 const deleteBookBtn = document.querySelectorAll('.delete');
@@ -151,5 +207,13 @@ const deleteBookBtn = document.querySelectorAll('.delete');
 deleteBookBtn.forEach(btn => {
     btn.addEventListener('click', (e) => {
     deleteFromLibrary((e.target.className).slice(-1))
+    })
+})
+
+editBookBtn.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        currBookId = e.target.classList[2];
+        setRadioBtnValue(e.target.classList[1]);
+        editModal.style.display = 'block';
     })
 })
