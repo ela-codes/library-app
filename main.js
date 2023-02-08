@@ -30,15 +30,16 @@ const statusType = {
 
 // FUNCTIONS
 
-
-// Functions related to storing book data
-function Book(name, author, pages, status) {
-    this.name = name
-    this.author = author
-    this.pages = pages
-    this.status = status
-    this.bookId = bookNum
+class Book {
+    constructor(name, author, pages, status) {
+        this.name = name
+        this.author = author
+        this.pages = pages
+        this.status = status
+        this.bookId = bookNum
+    }
 }
+
 
 function createNewBook() {
     const newBook = new Book(
