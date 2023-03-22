@@ -180,12 +180,14 @@ closeModal.forEach(btn => {
 )
 
 addButton.onclick = (e) => {
-    e.preventDefault()
-    addBookToLibrary(createNewBook())
-    createBookCard(Object.values(myLibrary[myLibrary.length-1])) // get the values of recently added Book object
-    hideModal()
-    form.reset()
-    bookNum++ // increment book id number
+    if (formComplete()) {
+        addBookToLibrary(createNewBook())
+        createBookCard(Object.values(myLibrary[myLibrary.length-1])) // get the values of recently added Book object
+        hideModal()
+        form.reset()
+        e.preventDefault()
+        bookNum++ // increment book id number
+    }
 }
 
 updateStatusBtn.onclick = (e) => {
@@ -195,7 +197,10 @@ updateStatusBtn.onclick = (e) => {
     hideModal()
 }
 
-
+// FORM VALIDATION
+function formComplete() {
+    return form.reportValidity()
+}
 
 // SAMPLE BOOK ENTRIES
 

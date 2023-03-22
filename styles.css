@@ -109,7 +109,9 @@ h3 {
 .open-modal:hover,
 .open-modal:focus,
 #add-book:hover,
-#add-book:focus 
+#add-book:focus,
+#update-status:hover,
+#update-status:focus,
 img:hover,
 img:hover {
     color: var(--lightgray);
@@ -139,6 +141,15 @@ li {
     list-style: none;
     padding: 10px;
 }
+
+input:invalid {
+    background-color: var(--lightgray);
+}
+
+input:focus {
+    background-color: var(--off-white);
+}
+
 
 .book-id-msg {
     font-style: italic;

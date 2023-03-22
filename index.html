@@ -25,30 +25,35 @@
                 <form autocomplete="off" class="new-book-form">
                     <ul>
                         <li>
-                            <label for="book_title">Title</label>
-                            <input type="text" name="book_title" id="book_title">
+                            <label for="book_title">Title<span aria-label="required">*</span></label>
+                            <input type="text" name="book_title" id="book_title" minlength="1" required>
                         </li>
                         <li>
-                            <label for="book_author">Author</label>
-                            <input type="text" name="book_author" id="book_author">
+                            <label for="book_author">Author<span aria-label="required">*</span></label>
+                            <input type="text" name="book_author" id="book_author" minlength="1" required>
                         </li>
                         <li>
-                            <label for="book_pages">Pages</label>
-                            <input type="number" min=1 name="book_pages" id="book_pages">
+                            <label for="book_pages">Pages<span aria-label="required">*</span></label>
+                            <input type="number" name="book_pages" id="book_pages" min=1 pattern="[0-9]" required>
                         </li>
                         <li>
-                            <h5>Reading Status</h5>
-                            <input type="radio" id="completed" name="reading_status" value="Completed">
-                            <label for="completed">Completed</label><br>
-                            <input type="radio" id="in-progress" name="reading_status" value="In Progress">
-                            <label for="in-progress">In Progress</label><br>
-                            <input type="radio" id="want-to-read" name="reading_status" value="Want To Read">
-                            <label for="want-to-read">Want To Read</label><br>
-                            <input type="radio" id="did-not-finish" name="reading_status" value="Did Not Finish">
-                            <label for="did-not-finish">Did Not Finish</label><br>
+                            <fieldset>
+                                <legend>Reading Status<span aria-label="required">*</span></legend>
+                                <input type="radio" id="completed" name="reading_status" value="Completed" required>
+                                <label for="completed">Completed</label><br>
+                                <input type="radio" id="in-progress" name="reading_status" value="In Progress">
+                                <label for="in-progress">In Progress</label><br>
+                                <input type="radio" id="want-to-read" name="reading_status" value="Want To Read">
+                                <label for="want-to-read">Want To Read</label><br>
+                                <input type="radio" id="did-not-finish" name="reading_status" value="Did Not Finish">
+                                <label for="did-not-finish">Did Not Finish</label><br>
+                            </fieldset>
+                        </li>
+                        <li>
+
                         </li>
                     </ul>
-                    <button type="submit" id="add-book">Add to List</button>
+                    <button id="add-book">Add to List</button>
                 </form>
                 <div class="book-id-msg">
                     <span class="book-id"></span>.
@@ -77,7 +82,7 @@
                             <label for="did-not-finish">Did Not Finish</label><br>
                         </li>
                     </ul>
-                <button type="submit" id="update-status">Update Status</button>
+                <button id="update-status">Update Status</button>
             </div>
         </div>
         
